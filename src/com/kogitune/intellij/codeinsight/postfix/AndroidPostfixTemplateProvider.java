@@ -18,9 +18,11 @@ package com.kogitune.intellij.codeinsight.postfix;
 import com.intellij.codeInsight.template.postfix.templates.JavaPostfixTemplateProvider;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplate;
 import com.intellij.util.containers.ContainerUtil;
+import com.kogitune.intellij.codeinsight.postfix.templates.surround.DynamicTemplate;
 import com.kogitune.intellij.codeinsight.postfix.templates.surround.LogDTemplate;
 import com.kogitune.intellij.codeinsight.postfix.templates.surround.LogTemplate;
 import com.kogitune.intellij.codeinsight.postfix.templates.surround.ToastTemplate;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -41,6 +43,15 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
                 new LogTemplate(),
                 new LogDTemplate()
         );
+
+        templates.add(new DynamicTemplate("ll", "Log.d($TAG$, $expr$)$END$ " +
+                "// ll"));
+        templates.add(new DynamicTemplate("l", "Log.d($TAG$, $expr$)$END$ // " +
+                "1"));
+        templates.add(new DynamicTemplate("l2", "Log.d(TAG, expr); // l2"));
+        templates.add(new DynamicTemplate("l3", "Log.d(TAG, expr); // l3"));
+        templates.add(new DynamicTemplate("l4", "Log.d(TAG, expr); // l4"));
+        templates.add(new DynamicTemplate("l5", "Log.d(TAG, expr); // l5"));
     }
 
     @NotNull
